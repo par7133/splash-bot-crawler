@@ -21,6 +21,16 @@
 
  header("Content-Type: text/javascript");
 
+ $host1 = filter_input(INPUT_GET, "h", FILTER_SANITIZE_STRING);
+ if ($host1 == "mbfier.com") {
+   $host = "mbfier.com";
+ } else if ($host1 === "mbfy.it") {
+   $host = "mbfy.it";
+ } else {
+   echo("hots parameter error.");
+   exit(0);
+ }
+
  $targetDomain = filter_input(INPUT_GET, "td", FILTER_SANITIZE_STRING);
  if (substr($targetDomain, 0, 4) == "www.") {
    $cleanTargetDomain = substr($targetDomain, 4);
@@ -33,10 +43,9 @@
    $galTitle = strtoupper(substr($cleanTargetDomain, 0, $ipos-1));
  } else {
    $targetDomain = $targetDomain . ".com";
-   echo("window.open('http://" . $targetDomain . ".mbfier.com','_self');");
+   echo("window.open('http://" . $targetDomain . "." . $host . "','_self');");
    exit(0);
  }  
-
 
  $output1 = filter_input(INPUT_GET, "out", FILTER_SANITIZE_STRING);
  $output1 = strtolower($output1); 
@@ -83,6 +92,7 @@ var recNum = 0;
 var nImgProcessed = 0;
 var output = <?PHP echo($output); ?>; 
 var verbose = <?PHP echo($verbose); ?>; 
+var host = "<?PHP echo($host); ?>";
 var targetDomain = "<?PHP echo($targetDomain);?>";
 var galTitle = "<?PHP echo($galTitle);?>";
 var landingPage = "<?PHP echo($cleanTargetDomain);?>";
@@ -116,7 +126,11 @@ function loadDoc() {
     }
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://"+targetDomain+".mbfier.com/upload.php?url=http://"+targetDomain, true);  
+    if (host == "mbfier.com") {
+      xhttp.open("GET", "http://"+targetDomain+".mbfier.com/upload.php?url=http://"+targetDomain, true);  
+    } else {
+      xhttp.open("GET", "http://"+targetDomain+".mbfy.it/upload.php?url=http://"+targetDomain, true);
+    }
     xhttp.send();
     xhttp.onreadystatechange = function() {
 
