@@ -1,76 +1,5 @@
-<?PHP 
-
 /*
- * Mbfier, the gallery bot
- * Copyright (C) 2021 Daniele Bonini
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
- */   
-
- header("Content-Type: text/javascript");
-
- $host1 = filter_input(INPUT_GET, "h", FILTER_SANITIZE_STRING);
- if ($host1 == "mbfier.com") {
-   $host = "mbfier.com";
- } else if ($host1 === "mbfy.it") {
-   $host = "mbfy.it";
- } else {
-   echo("hots parameter error.");
-   exit(0);
- }
-
- $targetDomain = filter_input(INPUT_GET, "td", FILTER_SANITIZE_STRING);
- if (substr($targetDomain, 0, 4) == "www.") {
-   $cleanTargetDomain = substr($targetDomain, 4);
- } else {
-   $cleanTargetDomain = $targetDomain;
- } 
- $cleanTargetDomain = ucfirst($cleanTargetDomain);
- $ipos = mb_strripos("~" . $cleanTargetDomain, ".");
- if ($ipos) {
-   $galTitle = strtoupper(substr($cleanTargetDomain, 0, $ipos-1));
- } else {
-   $targetDomain = $targetDomain . ".com";
-   echo("window.open('http://" . $targetDomain . "." . $host . "','_self');");
-   exit(0);
- }  
-
- $output1 = filter_input(INPUT_GET, "out", FILTER_SANITIZE_STRING);
- $output1 = strtolower($output1); 
- if ($output1 == "json") {
-   $output = 2; // set flag for json output
- } else if ($output1 === "std") {
-   $output = 1; // set flag for standard output
- } else {
-   echo("out parameter error.");
-   exit(0);
- }
- $verbose1 = filter_input(INPUT_GET, "v", FILTER_SANITIZE_STRING);
- if ($verbose1 == "0") {
-   $verbose = 0; // set flag for defalt app verbosity
- } else if ($verbose1 === "1") {
-   $verbose = 1; // set flag for quite verbosity
- } else {
-   echo("verbose parameter error.");
-   exit(0);
- }
- 
-?>
-
-/*
- * Mbfier, the gallery bot
+ * Mobifier, the gallery bot
  * Copyright (C) 2021 Daniele Bonini
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -90,12 +19,12 @@
 
 var recNum = 0;
 var nImgProcessed = 0;
-var output = <?PHP echo($output); ?>; 
-var verbose = <?PHP echo($verbose); ?>; 
-var host = "<?PHP echo($host); ?>";
-var targetDomain = "<?PHP echo($targetDomain);?>";
-var galTitle = "<?PHP echo($galTitle);?>";
-var landingPage = "<?PHP echo($cleanTargetDomain);?>";
+var output = 1; 
+var verbose = 0; 
+var host = "mbfy.it";
+var targetDomain = "example.com";
+var galTitle = "EXAMPLE";
+var landingPage = "Example.com";
 
 var crawlres = [];
 var logoFound = false;
