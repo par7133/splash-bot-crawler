@@ -1,4 +1,4 @@
-# gallery-bot-crawler
+# splash-bot-crawler
 
 Splash Bot creates galleries on the fly of your websites - GPL License 🔥
 
