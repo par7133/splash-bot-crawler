@@ -353,6 +353,7 @@ function writeFooter() {
     str = "<div style='text-align:center;font-size:9px'>Trademarks and brands are property of their respective owners.<br>.<br></div><div style='background-color:#03a9f5;height:105px;text-align:center;vetical-align:middle'><br><br><a href='/gr.php?to="+landingPage+"' target='_blank' style='text-decoration:none;font-weight:900;font-size:3.2vw;color:#FFFFFF;'>Go to "+landingPage+"</a></div>";
     str_redirect = "<script>setTimeout(function(){window.open('/gr.php?to="+landingPage+"','_self')},12000);</script>";
     document.write(str);
+    document.write(str_redirect);
   }  
 }
 
