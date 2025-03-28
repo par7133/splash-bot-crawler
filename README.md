@@ -2,4 +2,4 @@
 
 Splash Bot creates splash on the fly of your websites - GPL License 🔥
 
-Feedback: posta@elettronica.lol
+Feedback: <a href="mailto:code@gaox.io">code@gaox.io</a>
